@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do list</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        Ahoj, {{ request.user.username }}
+    {% else %}
+        Ahoj, anonymní uživateli :)
+    {% endif %}<br><br>
+    Název úkolu: {{ todo_detail.name }}<br>
+    Datum k ukončení úkolu: {{ todo_detail.due_date|date:"d.m.Y" }}
+</body>
+</html>
