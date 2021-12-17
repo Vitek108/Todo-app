@@ -1,20 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>To do list</title>
-</head>
-<body>
-    {% if request.user.is_authenticated %}
-        Ahoj, {{ request.user.username }}
-    {% else %}
-        Ahoj, anonymní uživateli :)
-    {% endif %}<br><br>
-    <a href="/create">Vytvořit nový úkol</a>
-    <ul>
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="text-center mt-5">
+        <p>
+        {% if request.user.is_authenticated %}
+            Ahoj, {{ request.user.username }}
+        {% else %}
+            Ahoj, anonymní uživateli :)
+        {% endif %}
+        </p>
+        <br><br>
+
+        <a class="btn btn-primary" href="/create">Vytvořit nový úkol</a>
+    </div>
+        <br><br>
+
+    <div class="col-4 offset-4">
         {% for todo in todo_list %}
-            <li>"<a href="/{{ todo.id }}">{{ todo.name }}</a>" s koncem {{ todo.due_date|date:"d.m.Y" }}</li>
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4><a href="/{{ todo.id }}">{{ todo.name }}</a></h4>
+                </div>
+                <div class="card-body">
+                    <p> koncem {{ todo.due_date|date:"d.m.Y" }}</p>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+{% endblock content %}
+
