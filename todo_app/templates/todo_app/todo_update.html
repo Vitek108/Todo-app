@@ -1,12 +1,14 @@
-{% extends "base.html" %}
+{% extends "todo_app/base.html" %}
 
 {% block content %}
     <div class="col-4 offset-4 mt-5">
         <a href="/" class="btn btn-secondary">Zpět</a><br><br>
-        <h4>Upravit úkol</h4>
+        <h4>Aktualizovat úkol</h4>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                Komentář k řešení: <br> {{ form.comment }}
+                Status: <br> {{ form.status }} <br>
+                <br><br>
                 <button class="btn btn-primary" type="submit">Odeslat</button>
             </form>
     </div>
